@@ -21,6 +21,11 @@ const server = http.createServer((req,res)=>{
         res.writeHead(200, {'Content-Type': 'image/png'});
         fs.createReadStream(imgPath).pipe(res);
       }
+      else if (req.url.match('.jpg$')) {
+        let imgPathB = __dirname + req.url;
+        res.writeHead(200, {'Content-Type': 'image/jpeg'});
+        fs.createReadStream(imgPathB).pipe(res); 
+      }
       else {
         res.statusCode = 404;
         res.end('page is not found 404');
